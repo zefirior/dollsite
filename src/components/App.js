@@ -7,11 +7,16 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         console.log('---', 'Hello world');
-        const lots = fetch('/lot').then(function (response) {
+        const lots = fetch(
+            'http://127.0.0.1:5000/lot'
+        ).then(function (response) {
             return response.json()
+        }).then(function (data) {
+            data.forEach(function (element) {
+                console.log('---', element)
+            })
         });
         console.log('---', lots)
-
     }
 
     render() {
