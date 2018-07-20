@@ -1,29 +1,36 @@
 import React from 'react'
 import Article from './Article'
+import 'bootstrap/dist/css/bootstrap.css'
 
 
 class App extends React.Component {
 
     constructor(props) {
         super(props);
-        console.log('---', 'Hello world');
-        const lots = fetch(
+        this.state = {articles: []};
+
+    }
+
+    componentDidMount() {
+        fetch(
             'http://127.0.0.1:5000/lot'
-        ).then(function (response) {
+        ).then(response => {
             return response.json()
-        }).then(function (data) {
-            data.forEach(function (element) {
-                console.log('---', element)
-            })
+        }).then(data => {
+            let articles = data.map(function (article) {
+                return (<Article key={article.id} name={article.name} desc={article.desc}/>)
+            });
+            this.setState({articles: articles});
         });
-        console.log('---', lots)
     }
 
     render() {
         return (
-            <div>
-                <h1>App name</h1>
-                <Article/>
+            <div className="container">
+                <div className="jumbotron">
+                    <h1>Dollsite</h1>
+                </div>
+                {this.state.articles}
             </div>
         )
     }
