@@ -1,0 +1,9 @@
+#main-menu {
+    width: 1200px;
+}
+
+#main-logo {
+    background-image: url("./logo.png");
+    height: 152px;
+    width: 332px;
+}

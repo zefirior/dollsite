@@ -1,34 +1,31 @@
 import React from 'react'
-import Article from './Article'
+import AuthorCard from './AuthorCard'
+import MainMenu from './MainMenu'
 import 'bootstrap/dist/css/bootstrap.css'
+import '../assets/App.css'
 
 
 class App extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {articles: []};
-
-    }
-
-    componentDidMount() {
-        window.fetcher.getJsonPromise(
-            'lot'
-        ).then(data => {
-            let articles = data.map(function (article) {
-                return (<Article key={article.id} name={article.name} desc={article.desc}/>)
-            });
-            this.setState({articles: articles});
-        });
     }
 
     render() {
         return (
-            <div className="container">
-                <div className="jumbotron">
-                    <h1>Dollsite</h1>
+            <div id='root_app'>
+                <div id="main-menu">
+                    <MainMenu />
                 </div>
-                {this.state.articles}
+                <div className="container">
+                    <AuthorCard />
+                    <AuthorCard />
+                    <AuthorCard />
+                    <AuthorCard />
+                    <AuthorCard />
+                    <AuthorCard />
+                    <AuthorCard />
+                </div>
             </div>
         )
     }
