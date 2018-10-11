@@ -1,0 +1,3 @@
+[submodule "backend"]
+	path = backend
+	url = git@github.com:zefirior/dollsite_back.git

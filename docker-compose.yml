@@ -1,0 +1,23 @@
+version: "2"
+
+services:
+
+  front:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    network_mode: host
+    volumes:
+      - "./src:/app/src"
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    network_mode: host
+    volumes:
+      - "./backend/src:/app/src"
+      - "~/tmp/files:/app/files"
+      - "/var/run:/var/run"
