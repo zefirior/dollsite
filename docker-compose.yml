@@ -19,5 +19,5 @@ services:
     network_mode: host
     volumes:
       - "./backend/src:/app/src"
-      - "~/tmp/files:/app/files"
+      - "/home/liinda/tmp/files:/app/files"
       - "/var/run:/var/run"

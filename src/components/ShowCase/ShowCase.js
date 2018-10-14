@@ -3,6 +3,7 @@ import Product from '../Product/Product'
 
 
 class ShowCase extends React.Component {
+    price;
 
     constructor(props) {
         super(props);
@@ -28,7 +29,12 @@ class ShowCase extends React.Component {
     componentDidMount() {
         this.productsPromise().then(data => {
             let products = data.map(function (product) {
-                return (<Product key={product.id} name={product.name} price={product.price}/>)
+                return (<Product
+                    key={product.id}
+                    name={product.name}
+                    price={product.price}
+                    image_uuid={product.image_uuid}
+                />)
             });
             this.setState({products: products});
         });
@@ -39,7 +45,7 @@ class ShowCase extends React.Component {
 
         let packs = [];
         for (let i = 0; i < this.state.products.length / 3; i++) {
-            packs[i] = this.packRow(this.state.products.slice(3 * i, 3 * i + 3))
+            packs[i] = ShowCase.packRow(this.state.products.slice(3 * i, 3 * i + 3))
         }
 
         return (

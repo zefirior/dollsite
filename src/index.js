@@ -2,8 +2,20 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App';
 import JsonFetcher from './fetcher';
-import './assets/main.css'
+import './assets/main.css';
+import { BrowserRouter } from 'react-router-dom';
 
-window.fetcher = new JsonFetcher('http://127.0.0.1:5000/');
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const config = require("./config");
+
+window.app_config = config;
+window.fetcher = new JsonFetcher(config.BACK_HOST);
+
+ReactDOM.render(
+
+    <BrowserRouter>
+        <App />
+    </BrowserRouter>,
+
+    document.getElementById('root')
+);

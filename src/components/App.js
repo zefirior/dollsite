@@ -1,9 +1,9 @@
 import React from 'react'
-import AuthorCard from './AuthorCard'
 import MainMenu from './MainMenu'
 import ShowCase from './ShowCase/ShowCase'
 import 'bootstrap/dist/css/bootstrap.css'
 import '../assets/App.css'
+import { Route, Switch } from 'react-router-dom'
 
 
 class App extends React.Component {
@@ -14,12 +14,10 @@ class App extends React.Component {
                 <div id="main-menu">
                     <MainMenu />
                 </div>
-                {/*
-                <div className="container">
-                    <AuthorCard />
-                </div>
-                */}
-                <ShowCase show_type="bublics"/>
+                <Switch>
+                    <Route path="/show" component={() => (<ShowCase show_type="bublics"/>)} />
+                    <Route path="/admin" component={MainMenu}/>
+                </Switch>
             </div>
         )
     }
