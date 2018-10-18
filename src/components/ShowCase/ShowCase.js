@@ -1,5 +1,7 @@
 import React from 'react'
 import Product from '../Product/Product'
+import ActionLine from '../ActionLine/ActionLine'
+import './ShowCase.css'
 
 
 class ShowCase extends React.Component {
@@ -16,15 +18,15 @@ class ShowCase extends React.Component {
         )
     }
 
-    static packRow(productsPack) {
-        return (
-            <div className="row justify-content-around" style={{marginBottom: "20px"}}>
-                {productsPack[0]}
-                {productsPack[1]}
-                {productsPack[2]}
-            </div>
-        )
-    }
+    // static packRow(productsPack) {
+    //     return (
+    //         <div className="row justify-content-around" style={{marginBottom: "20px"}}>
+    //             {productsPack[0]}
+    //             {productsPack[1]}
+    //             {productsPack[2]}
+    //         </div>
+    //     )
+    // }
 
     componentDidMount() {
         this.productsPromise().then(data => {
@@ -43,18 +45,18 @@ class ShowCase extends React.Component {
 
     render() {
 
-        let packs = [];
-        for (let i = 0; i < this.state.products.length / 3; i++) {
-            packs[i] = ShowCase.packRow(this.state.products.slice(3 * i, 3 * i + 3))
-        }
+        // let packs = [];
+        // for (let i = 0; i < this.state.products.length / 3; i++) {
+        //     packs[i] = ShowCase.packRow(this.state.products.slice(3 * i, 3 * i + 3))
+        // }
 
         return (
                 <div className="container">
-                    <div className="jumbotron">
-                        <h2>Hi! This is my showcase.</h2>
-                    </div>
+                    <div className="showcase">
+                        <ActionLine />
 
-                    {packs}
+                        {this.state.products}
+                    </div>
                 </div>
         )
     }
