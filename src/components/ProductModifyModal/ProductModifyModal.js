@@ -5,22 +5,12 @@ export default class ProductModifyModal extends React.Component {
 
     constructor(props) {
         super(props);
-
-        this.state = {
-            modalIsOpen: true
-        };
-
-        this.closeModal = this.closeModal.bind(this);
-    }
-
-    closeModal() {
-        this.setState({modalIsOpen: false});
     }
 
     render() {
 
         let display = 'None';
-        if (this.state.modalIsOpen) {
+        if (this.props.modal_on) {
             display = "block";
         }
 
@@ -30,6 +20,7 @@ export default class ProductModifyModal extends React.Component {
                 tabIndex="-1"
                 role="dialog"
                 aria-labelledby="exampleModalCenterTitle"
+                aria-hidden="true"
                 style={{display: display}}
             >
                 <div className="modal-dialog modal-dialog-centered" role="document">
@@ -41,13 +32,13 @@ export default class ProductModifyModal extends React.Component {
                             </button>
                         </div>
                         <div className="modal-body">
-                            ...
+                            {this.props.product_desc}
                         </div>
                         <div className="modal-footer">
                             <button
                                 type="button"
                                 className="btn btn-secondary"
-                                onClick={this.closeModal}
+                                onClick={this.props.modal_state_update}
                             >
                                 Close
                             </button>

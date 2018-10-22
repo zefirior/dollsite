@@ -10,8 +10,17 @@ const button_style = {
 class Product extends React.Component {
 
     constructor(props) {
-        console.log(props);
         super(props);
+
+        this.state = {
+            modal_on: false,
+        };
+
+        this.modal_state_update = this.modal_state_update.bind(this);
+    }
+
+    modal_state_update(state) {
+        this.setState({modal_on: state})
     }
 
     render() {
@@ -31,12 +40,23 @@ class Product extends React.Component {
                             className="btn btn-primary"
                             data-toggle="modal"
                             data-target={"#exampleModalCenter_" + this.props.id}
+                            onClick={() => {this.modal_state_update(true)}}
                         >
                             <span>Edit</span>
                         </button>
-                        <button type="button" style={button_style} className="btn btn-danger">Remove</button>
+                        <button
+                            type="button"
+                            style={button_style}
+                            className="btn btn-danger"
+                            onClick={this.props.remove_callback}
+                        >Remove</button>
                     </div>
-                    <ProductModifyModal id={this.props.id} />
+                    <ProductModifyModal
+                        id={this.props.id}
+                        modal_on={this.state.modal_on}
+                        modal_state_update={() => {this.modal_state_update(false)}}
+                        product_desc={this.props.name}
+                    />
                 </div>
             </div>
         )
