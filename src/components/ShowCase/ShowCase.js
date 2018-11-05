@@ -5,7 +5,7 @@ import './ShowCase.css'
 
 
 class ShowCase extends React.Component {
-    price;
+    uuid;
 
     constructor(props) {
         super(props);
@@ -16,14 +16,14 @@ class ShowCase extends React.Component {
 
     productsPromise() {
         return window.fetcher.getJsonPromise(
-            'collections/' + this.props.show_type
+            this.props.show_type + '/lst'
         )
     }
 
-    remove_product(key) {
+    _remove_product(key) {
         let products = this.state.products;
         for (let i = products.length - 1; i >= 0; i--){
-            if (products[i].id === key) {
+            if (products[i].uuid === key) {
                 products.splice(i, 1);
                 break;
             }
@@ -31,12 +31,31 @@ class ShowCase extends React.Component {
         this.setState({products: products})
     }
 
+    remove_product(key) {
+        let form = new FormData();
+        form["uuid"] = key;
+        form.append("uuid", key);
+
+        const req = new Request(
+            window.fetcher.wrapUrl(this.props.show_type + '/delete'),
+            {
+                method: 'POST',
+                body: form
+            }
+        );
+
+        fetch(req).then((response) => {
+            if (response.ok) {
+                this._remove_product(key)
+            }
+        })
+    }
+
     componentDidMount() {
 
         this.productsPromise().then(data => {
             let products = data.map(function (product) {return product});
             this.setState({products: products});
-
         });
 
     }
@@ -44,12 +63,12 @@ class ShowCase extends React.Component {
     productView() {
         return this.state.products.map((product) => {
             return (<Product
-                key={product.id}
-                id={product.id}
+                key={product.uuid}
+                id={product.uuid}
                 name={product.name}
-                price={product.price}
-                image_uuid={product.image_uuid}
-                remove_callback={() => this.remove_product(product.id)}
+                desc={product.desc}
+                image_uuid={product.uuid}
+                remove_callback={() => this.remove_product(product.uuid)}
             />)
         });
     }

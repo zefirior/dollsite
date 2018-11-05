@@ -8,6 +8,8 @@ const button_style = {
 };
 
 class Product extends React.Component {
+    remove_callback;
+    desc;
 
     constructor(props) {
         super(props);
@@ -31,8 +33,7 @@ class Product extends React.Component {
                     <div className="card-title">
                         <h5>{this.props.name}</h5>
                     </div>
-                    <p>Немного расскажем об этих куклах. Они живут своей маленькой уютной жизнью</p>
-                    <b><i><p>{this.props.price} руб</p></i></b>
+                    <p>{this.props.desc}</p>
                     <div className="product-button">
                         <button
                             type="button"

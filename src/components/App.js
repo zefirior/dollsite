@@ -15,7 +15,7 @@ class App extends React.Component {
                     <MainMenu />
                 </div>
                 <Switch>
-                    <Route path="/show" component={() => (<ShowCase show_type="bublics"/>)} />
+                    <Route path="/show" component={() => (<ShowCase show_type="merch"/>)} />
                     <Route path="/admin" component={MainMenu}/>
                 </Switch>
             </div>

@@ -4,9 +4,14 @@ class JsonFetcher {
         this.server_url = url;
     }
 
+    wrapUrl(url) {
+        return this.server_url + url
+    }
+
     getJsonPromise(url) {
         return fetch(
-            this.server_url + url
+            this.wrapUrl(url),
+            {method: 'POST'}
         ).then(response => {
             return response.json()
         })
