@@ -29,11 +29,14 @@ class Product extends React.Component {
         return (
             <div className="product card">
                 <ProductImage image_uuid={this.props.image_uuid} />
+
                 <div className="card-body">
                     <div className="card-title">
                         <h5>{this.props.name}</h5>
                     </div>
+
                     <p>{this.props.desc}</p>
+
                     <div className="product-button">
                         <button
                             type="button"
@@ -52,11 +55,13 @@ class Product extends React.Component {
                             onClick={this.props.remove_callback}
                         >Remove</button>
                     </div>
+
                     <ProductModifyModal
                         id={this.props.id}
                         modal_on={this.state.modal_on}
                         modal_state_update={() => {this.modal_state_update(false)}}
-                        product_desc={this.props.name}
+                        product_name={this.props.name}
+                        product_desc={this.props.desc}
                     />
                 </div>
             </div>

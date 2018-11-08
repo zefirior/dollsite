@@ -16,8 +16,7 @@ export default class ActionLine extends React.Component {
                     </div>
                     <div className="col-sm">
                         <div className='btn-group'>
-                            <button type="button" className="btn btn-success">Add</button>
-                            <button type="button" className="btn btn-success" onClick={this.props.action}>Info</button>
+                            {this.props.buttons}
                         </div>
                     </div>
                 </div>

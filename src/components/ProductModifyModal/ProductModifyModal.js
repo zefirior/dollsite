@@ -3,8 +3,25 @@ import React from 'react'
 
 export default class ProductModifyModal extends React.Component {
 
+    product_name;
+    product_desc;
+
     constructor(props) {
         super(props);
+        this.state = {
+            name: this.props.product_name,
+            desc: this.props.product_desc
+        };
+        this.handleChangeName = this.handleChangeName.bind(this);
+        this.handleChangeDesc = this.handleChangeDesc.bind(this);
+    }
+
+    handleChangeName(event){
+        this.setState({name: event.target.value});
+    }
+
+    handleChangeDesc(event){
+        this.setState({desc: event.target.value});
     }
 
     render() {
@@ -26,13 +43,20 @@ export default class ProductModifyModal extends React.Component {
                 <div className="modal-dialog modal-dialog-centered" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h5 className="modal-title" id="exampleModalCenterTitle">Modal title</h5>
-                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                            <h5 className="modal-title" id="exampleModalCenterTitle">Edit merch</h5>
+                            <button type="button" className="close" aria-label="Close" onClick={this.props.modal_state_update}>
                                 <span >&times;</span>
                             </button>
                         </div>
                         <div className="modal-body">
-                            {this.props.product_desc}
+                            <div className="form-group">
+                                <lable>Name</lable>
+                                <input type='text' className="form-control" value={this.state.name} onChange={this.handleChangeName} />
+                            </div>
+                            <div className="form-group">
+                                <lable>Desc</lable>
+                                <input type='text' className="form-control" value={this.state.desc} onChange={this.handleChangeDesc} />
+                            </div>
                         </div>
                         <div className="modal-footer">
                             <button
@@ -40,7 +64,7 @@ export default class ProductModifyModal extends React.Component {
                                 className="btn btn-secondary"
                                 onClick={this.props.modal_state_update}
                             >
-                                Close
+                                Cancel
                             </button>
                             <button type="button" className="btn btn-primary">Save changes</button>
                         </div>

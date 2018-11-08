@@ -75,10 +75,15 @@ class ShowCase extends React.Component {
 
     render() {
 
+        let buttons = [
+            (<button type="button" className="btn btn-success">Add</button>),
+            (<button type="button" className="btn btn-success" onClick={this.props.action}>Info</button>)
+        ];
+
         return (
                 <div className="container">
                     <div className="showcase">
-                        <ActionLine action={this.console} />
+                        <ActionLine buttons={buttons} />
 
                         {this.productView()}
                     </div>
